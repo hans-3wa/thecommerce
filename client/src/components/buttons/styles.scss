@@ -1,0 +1,35 @@
+@import "src/assets/styles/colors";
+
+.btn {
+  font-weight: 800;
+  margin: 12px auto;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 16px;
+  color: white;
+  width: 40%;
+
+
+}
+
+.btn-primary {
+  background: $background-1;
+
+  &:hover {
+    background: $h1-color;
+    color: $background-1;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+}
+
+.btn-secondary {
+  background: $h1-color;
+
+  &:hover {
+    background: $background-1;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+}

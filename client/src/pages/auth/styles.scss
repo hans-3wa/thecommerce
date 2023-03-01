@@ -1,0 +1,12 @@
+@import "src/assets/styles/mixins";
+@import "src/assets/styles/colors";
+
+.form-register {
+  width: 100%;
+  margin: 32px auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 1em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background: $background-2;
+}
