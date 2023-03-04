@@ -22,7 +22,6 @@ const verifyToken = (req, res, next) => {
 }
 
 const isAdmin = (req, res, next) => {
-    console.log(req.userId)
     UserModel.findOne({_id: req.userId})
         .then((user) => {
             if(user.isAdmin){

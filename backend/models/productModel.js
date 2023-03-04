@@ -5,27 +5,31 @@ mongoose.plugin(slug)
 
 const productModel = new mongoose.Schema({
         name: {
-            type: String
+            type: String,
+            required: true
         },
         description: {
             type: String,
+            required: true
         },
         images: [
             {
-                type: String
+                type: String,
+                required: true
             }
         ],
         quantity: {
-            type: Number
+            type: Number,
+            required: true
         },
         price: {
-            type: Number
+            type: Number,
+            required: true
         },
         slug: {
             type: String,
-            slug: 'title',
-            unique: true,
-            index: true
+            slug: 'name',
+            unique: true
         }
     }, {
         timestamps: true,
