@@ -29,8 +29,14 @@ const productModel = new mongoose.Schema({
         slug: {
             type: String,
             slug: 'name',
-            unique: true
+            unique: true,
+            index: true
+        },
+        status: {
+            type: Boolean,
+            required: true
         }
+
     }, {
         timestamps: true,
         versionKey: false
