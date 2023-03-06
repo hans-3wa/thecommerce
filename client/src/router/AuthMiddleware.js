@@ -1,7 +1,8 @@
 import React from "react";
 import {Navigate} from "react-router-dom";
 
-export const Authmiddleware = (props) => {
+export const AuthMiddleware = (props) => {
+
     if (!localStorage.getItem("jwt")) {
         return (
             <Navigate to={"/login"}/>

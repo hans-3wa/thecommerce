@@ -12,7 +12,7 @@ const router = express.Router()
 router.get('/products', getProducts)
 router.post('/product', addProduct)
 router.put('/product', updateProduct)
-router.delete('/product', deleteProductId)
+router.delete('/product/:id', deleteProductId)
 router.delete('/products', deleteAllProducts)
 
 export default router

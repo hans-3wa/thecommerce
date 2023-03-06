@@ -4,6 +4,7 @@ import authRouter from "./routes/authRouter.js";
 import adminRouter from "./routes/adminRouter.js";
 import cors from "cors"
 import {auth} from "./middleware/auth.js";
+import userRouter from "./routes/userRouter.js";
 
 const app = express()
 const PORT = 5300
@@ -21,6 +22,7 @@ mongoose.connect('mongodb://localhost:27017/ANJS01thecommerce')
 async function init() {
     app.use('/auth', authRouter)
     app.use('/admin',[auth.verifyToken, auth.isAdmin], adminRouter)
+    app.use('/user',[auth.verifyToken, ], userRouter)
 }
 
 app.listen(PORT, () => {

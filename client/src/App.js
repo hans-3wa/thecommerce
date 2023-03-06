@@ -2,10 +2,11 @@ import './App.css';
 import {useDispatch, useSelector} from "react-redux";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import {useState, useEffect} from "react";
-import {privateRoutes, publicRoutes} from "./router/routes";
-import {Authmiddleware} from "./router/AuthMiddleware";
+import {adminRoutes, privateRoutes, publicRoutes} from "./router/routes";
+import {AuthMiddleware} from "./router/AuthMiddleware";
 import {getVerifyToken} from "./helper/backend_helper";
 import {addUser} from "./store/slices/user/userSlice";
+import {AdminMiddleware} from "./router/AdminMiddleware";
 
 
 function App() {
@@ -15,8 +16,7 @@ function App() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log('app')
-        if(localStorage.getItem('jwt') && !user.isLogged){
+        if (localStorage.getItem('jwt') && !user.isLogged) {
             getVerifyToken()
                 .then(data => {
                     dispatch(addUser(data))
@@ -27,8 +27,7 @@ function App() {
                     navigate("/login")
                 })
         }
-    }, [])
-
+    }, [dispatch])
 
     return (
         <Routes>
@@ -37,9 +36,18 @@ function App() {
             ))}
             {privateRoutes.map((route, idx) => (
                 <Route path={route.path} element={
-                    <Authmiddleware>
+                    <AuthMiddleware>
                         {route.component}
-                    </Authmiddleware>}
+                    </AuthMiddleware>}
+                       key={idx}
+                       exact={true}
+                />
+            ))}
+            {adminRoutes.map((route, idx) => (
+                <Route path={route.path} element={
+                    <AdminMiddleware>
+                        {route.component}
+                    </AdminMiddleware>}
                        key={idx}
                        exact={true}
                 />

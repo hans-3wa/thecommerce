@@ -47,7 +47,7 @@ export const updateProduct = (req, res) => {
             const images = product.images.filter((e) => !fields['deleteImages'].includes(e))
             const newImages = await copyFiles(files.images ?? [], 'public/img/products')
 
-            !fields['deleteImages'].forEach((e) => {
+            fields['deleteImages'].forEach((e) => {
                 fs.unlink(e, (err) => {
                     if (err) {
                         if (err.code !== 'ENOENT') {
@@ -79,7 +79,7 @@ export const updateProduct = (req, res) => {
 export const deleteProductId = (req, res) => {
 
     try {
-        const {id} = req.body
+        const {id} = req.params
         ProductModel.findOneAndDelete({_id: id}, (err, deleted) => {
             if (err) {
                 return res.status(500).json({message: 'Error during deletion'});
@@ -118,4 +118,10 @@ export const deleteAllProducts = (req, res) => {
         })
         .catch(() => res.status(500).json({message: 'Error during deletion'}))
 
+}
+
+export const getProductsByVisibility = (req, res) => {
+    ProductModel.find({status: true})
+        .then((products) => res.status(200).json({count: products.length, products}))
+        .catch((products) => res.status(400).json({error: "An error is occurring"}))
 }
