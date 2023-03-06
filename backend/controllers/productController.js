@@ -10,6 +10,16 @@ export const getProducts = (req, res) => {
         .catch((err) => res.status(400).json({error: "An error occured"}))
 }
 
+export const getProductSlug = (req, res) => {
+    const {slug} = req.params
+    if(!slug){
+        return res.status(400).json({error: "Bad request"})
+    }
+    ProductModel.findOne({slug})
+        .then((product) => res.status(200).json(product))
+        .catch((err) => res.status(400).json(err))
+}
+
 export const addProduct = (req, res) => {
     try {
         const form = formidable({multiples: true});
