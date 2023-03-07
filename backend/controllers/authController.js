@@ -64,7 +64,7 @@ export const verifyToken = async (req, res) => {
         return res.status(403).send({message: "No token provided!"});
     }
 
-    jwt.verify(token, "key_secret", async (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
         if (err) {
             return res.status(403).send({message: "Unauthorized!"});
         }

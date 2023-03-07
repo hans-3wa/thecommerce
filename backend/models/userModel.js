@@ -50,7 +50,7 @@ userSchema.methods.createJWT = function () {
     return jwt.sign({
         id: this._id,
         email: this.email
-    }, 'key_secret', {expiresIn: '24h'})
+    }, process.env.JWT_SECRET, {expiresIn: '24h'})
 }
 
 export default mongoose.model('User', userSchema)
