@@ -17,7 +17,7 @@ const privateRoutes = [
 
 const adminRoutes = [
     {path: "/admin", component: <Admin/>},
-    {path: "/admin/product/:slug", component: <AdminProduct/>},
+    {path: "/admin/products/:slug", component: <AdminProduct/>},
 ]
 
 

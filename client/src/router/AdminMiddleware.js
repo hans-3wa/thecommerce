@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 
 export const AdminMiddleware = (props) => {
+
     const [loaded, setLoaded] = useState(false)
     const {user} = useSelector(state => state)
 

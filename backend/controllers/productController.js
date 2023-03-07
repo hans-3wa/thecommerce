@@ -12,7 +12,7 @@ export const getProducts = (req, res) => {
 
 export const getProductSlug = (req, res) => {
     const {slug} = req.params
-    if(!slug){
+    if (!slug) {
         return res.status(400).json({error: "Bad request"})
     }
     ProductModel.findOne({slug})
@@ -25,8 +25,9 @@ export const addProduct = (req, res) => {
         const form = formidable({multiples: true});
         form.parse(req, async (err, fields, files) => {
 
-            if (err) throw new Error(err.message)
-            const images = await copyFiles(files.image ?? [], 'public/img/products')
+            if (err) return res.status(500).json(e.message)
+
+            const images = await copyFiles(files.image ?? [], 'img/products')
 
             ProductModel.create({
                 name: fields.name,
@@ -36,7 +37,7 @@ export const addProduct = (req, res) => {
                 status: fields.status,
                 images
             })
-                .then((product) => res.status(201).json({message: "Creation product successful", product}))
+                .then((product) => res.status(201).json({message: "Creation products successful", product}))
                 .catch((err) => res.status(400).json({error: err.message}))
         });
     } catch (e) {
@@ -54,18 +55,24 @@ export const updateProduct = (req, res) => {
                 return res.status(400).json({error: "Id undifined"})
             }
 
-            const images = product.images.filter((e) => !fields['deleteImages'].includes(e))
-            const newImages = await copyFiles(files.images ?? [], 'public/img/products')
-
-            fields['deleteImages'].forEach((e) => {
-                fs.unlink(e, (err) => {
-                    if (err) {
-                        if (err.code !== 'ENOENT') {
-                            return res.status(500).json(e)
+            // récupère les anciennes images qu'on filtre avec celles qu'ont veut supprimer. ( deleteImages )
+            const images = product.images.filter((e) => !fields.deleteImages?.includes(e))
+            // Suppression de celle que l'on veut plus
+            if (fields.deleteImages) {
+                fields.deleteImages.forEach((e) => {
+                    fs.unlink(e, (err) => {
+                        if (err) {
+                            if (err.code !== 'ENOENT') {
+                                return res.status(500).json(e)
+                            }
                         }
-                    }
-                });
-            })
+                    });
+                })
+            }
+
+            // récupéré les nouvelles images que veux mette l'utilisateur ( files === images )
+            const newImages = await copyFiles(files.images ?? [], 'img/products')
+
 
             images.push(...newImages)
             ProductModel.findByIdAndUpdate(fields.id, {
@@ -76,7 +83,7 @@ export const updateProduct = (req, res) => {
                 status: fields.status,
                 images
             }, {new: true})
-                .then((product) => res.status(201).json({message: "Update product successful", product}))
+                .then((product) => res.status(201).json({message: "Update products successful", product}))
                 .catch((err) => res.status(400).json({error: err.message}))
 
 
@@ -87,7 +94,6 @@ export const updateProduct = (req, res) => {
 }
 
 export const deleteProductId = (req, res) => {
-
     try {
         const {id} = req.params
         ProductModel.findOneAndDelete({_id: id}, (err, deleted) => {
@@ -97,9 +103,10 @@ export const deleteProductId = (req, res) => {
             if (!deleted) {
                 return res.status(404).json({message: 'Element not found'});
             }
+
             deleted.images.forEach((image, i) => {
-                fs.unlink(image, (err) => {
-                    if (err) throw err;
+                fs.unlink(`public/${image}`, (err) => {
+                    if (err) return res.status(500).json({error: "File doesn't no existing"})
                 });
             })
 

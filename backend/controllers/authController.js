@@ -34,7 +34,7 @@ export const login = async (req, res) => {
         user.comparePassword(password, async (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
-                let jwt = user.createJWT()
+                const jwt = user.createJWT()
                 res.status(200).json({
                     message: "Login successfull",
                     user: {
@@ -56,18 +56,17 @@ export const login = async (req, res) => {
 export const verifyToken = async (req, res) => {
 
     let token;
-    if (req.headers['authorization'] !== undefined) {
+    if (
+        req.headers['authorization'] !== undefined) {
         token = req.headers['authorization'].split(' ')[1]
     }
     if (!token) {
-        res.status(403).send({message: "No token provided!"});
-        return
+        return res.status(403).send({message: "No token provided!"});
     }
 
     jwt.verify(token, "key_secret", async (err, decoded) => {
         if (err) {
-            res.status(403).send({message: "Unauthorized!"});
-            return
+            return res.status(403).send({message: "Unauthorized!"});
         }
         const user = await UserModel.findOne({_id: decoded.id})
         res.status(200).json({

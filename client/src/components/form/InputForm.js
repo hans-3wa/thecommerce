@@ -8,7 +8,7 @@ export const InputForm = (props) => {
                 <label>{props.label}</label>
                 {props.type !== 'select' ? (
                     <input type={props.type} name={props.name ?? props.label.toLowerCase().replaceAll(' ', '_')}
-                           onChange={props.handleChange} value={props.value ?? ""}/>
+                           onChange={props.handleChange} value={props.value ?? null}/>
                 ) : (
                     <>
                         <select onChange={props.handleChange} defaultValue={props.defaultValue.id}>
@@ -32,5 +32,5 @@ InputForm.propTypes = {
     type: PropTypes.string.isRequired,
     error: PropTypes.string,
     name: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.any,
 }

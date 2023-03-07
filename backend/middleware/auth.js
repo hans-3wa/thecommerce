@@ -7,14 +7,12 @@ const verifyToken = (req, res, next) => {
         token = req.headers['authorization'].split(' ')[1]
     }
     if (!token) {
-        res.status(403).send({message: "No token provided!"});
-        return
+        return res.status(403).send({message: "No token provided!"});
     }
 
     jwt.verify(token, "key_secret", async (err, decoded) => {
         if (err) {
-            res.status(401).send({message: "Unauthorized!"});
-            return
+            return res.status(401).send({message: "Unauthorized!"});
         }
         req.userId = decoded.id
         next()

@@ -22,7 +22,6 @@ function App() {
                     dispatch(addUser(data))
                 })
                 .catch(err => {
-                    console.log(err)
                     localStorage.removeItem('jwt')
                     navigate("/login")
                 })

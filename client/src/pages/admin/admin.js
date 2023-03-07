@@ -52,7 +52,6 @@ export const Admin = () => {
                                     </tr>
                                 )
                             })}
-
                             </tbody>
                         </table>
                     </Box>

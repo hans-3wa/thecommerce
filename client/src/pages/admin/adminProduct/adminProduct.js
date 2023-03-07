@@ -6,6 +6,7 @@ import {Col} from "../../../common/col/col";
 import {InputForm} from "../../../components/form/InputForm";
 import {Form} from "../../../components/form/Form";
 import {Box} from "../../../components/box/Box";
+import './styles.scss'
 
 export const AdminProduct = () => {
     const {slug} = useParams();
@@ -35,7 +36,26 @@ export const AdminProduct = () => {
                 <Col length={6}>
                     <Box>
                         <Form titleSubmit={"Inscription"} handleSubmit={() => console.log('ok')} btnSubmit>
-                            <InputForm handleChange={handleChange} label={"Nom"} name={"name"} type={"text"} value={product.name}/>
+                            <InputForm handleChange={handleChange} label={"Nom"} name={"name"} type={"text"}
+                                       value={product.name}/>
+                            <InputForm handleChange={handleChange} label={"Description"} name={"description"}
+                                       type={"text"} value={product.description}/>
+                            <InputForm handleChange={handleChange} label={"Quantité"} name={"quantity"} type={"text"}
+                                       value={product.quantity}/>
+                            <InputForm handleChange={handleChange} label={"Prix"} name={"price"} type={"number"}
+                                       value={product.price}/>
+                            <input onChange={(e) => setProduct({...product, status: e.target.checked})} name={"status"}
+                                   type={"checkbox"}/>
+                            <div className={"form-img"}>
+                                {product.images ? product.images.map((e, i) => {
+                                    return (
+                                        <div key={i}>
+                                            <p>ok</p>
+                                            <img src={`http://localhost:5300/${e}`} alt=""/>
+                                        </div>
+                                    )
+                                }) : null}
+                            </div>
                         </Form>
                     </Box>
                 </Col>
