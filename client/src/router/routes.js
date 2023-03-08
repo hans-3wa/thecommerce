@@ -4,11 +4,13 @@ import {Logout} from "../pages/auth/logout";
 import {Login} from "../pages/auth/login";
 import {Admin} from "../pages/admin/admin";
 import {AdminProduct} from "../pages/admin/adminProduct/adminProduct";
+import {Home} from "../pages/home/home";
 
 const publicRoutes = [
+    {path: "/", component: <Home/>},
     {path: "/register", component: <Register/>},
     {path: "/login", component: <Login/>},
-    {path: "/logout", component: <Logout/>},
+    {path: "/logout", component: <Logout/>}
 ]
 
 const privateRoutes = [

@@ -5,7 +5,7 @@ import adminRouter from "./routes/adminRouter.js";
 import cors from "cors"
 import {auth} from "./middleware/auth.js";
 import userRouter from "./routes/userRouter.js";
-import dotenv from "dotenv"
+import * as dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
@@ -19,7 +19,11 @@ app.use(express.urlencoded({extended: true}))
 mongoose.set("strictQuery", false)
 mongoose.connect(process.env.MONGO_DB_URI)
     .then(init)
-    .catch(err => console.log(err))
+    .catch(err => {
+        console.log(err)
+        console.log("Avez vous bien renseigner les variables d'environnements ? ")
+
+    })
 
 async function init() {
     app.use('/auth', authRouter)

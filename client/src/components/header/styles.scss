@@ -1,0 +1,42 @@
+@import "src/assets/styles/colors";
+
+header {
+  display: flex;
+  width: auto;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  box-sizing: content-box;
+  padding: 0 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  svg {
+    cursor: pointer;
+    font-size: 28px;
+  }
+
+  .auth {
+    position: relative;
+
+    .auth-active {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      background: white;
+      width: auto;
+      padding: 1em;
+      position: absolute;
+      right: 10px;
+      top: 40px;
+      border-radius: 10px;
+
+      li {
+        margin-top: 8px;
+      }
+
+      a {
+        &:hover {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

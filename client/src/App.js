@@ -1,4 +1,3 @@
-import './App.css';
 import {useDispatch, useSelector} from "react-redux";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import {useState, useEffect} from "react";
@@ -7,6 +6,7 @@ import {AuthMiddleware} from "./router/AuthMiddleware";
 import {getVerifyToken} from "./helper/backend_helper";
 import {addUser} from "./store/slices/user/userSlice";
 import {AdminMiddleware} from "./router/AdminMiddleware";
+import {Layout} from "./common/layout/layout";
 
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
     return (
         <Routes>
             {publicRoutes.map((route, i) => (
-                <Route path={route.path} element={route.component} key={i} exact={true}/>
+                <Route path={route.path} element={<Layout>{route.component}</Layout>} key={i} exact={true}/>
             ))}
             {privateRoutes.map((route, idx) => (
                 <Route path={route.path} element={

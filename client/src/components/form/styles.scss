@@ -34,17 +34,15 @@
 
     button {
       font-weight: 800;
-      margin: 12px auto;
       background: $background-1;
       border: none;
       border-radius: 5px;
       padding: 8px;
       font-size: 16px;
       color: white;
-      width: 40%;
 
       &:hover {
-        background: $h1-color;
+        background: $font-1;
         color: $background-1;
         transition: 0.5s;
         cursor: pointer;

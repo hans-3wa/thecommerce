@@ -7,6 +7,11 @@ ul {
   list-style: none;
   padding: 0;
 }
+a{
+  text-decoration: none;
+  color: $font-1;
+  font-weight: 600;
+}
 
 body {
   margin: 0;
@@ -14,7 +19,4 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: $background-1;
-}
-h1{
-  color: $h1-color;
 }

@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import './styles.scss'
 
 export const Title = (props) => {
     switch (props.type) {

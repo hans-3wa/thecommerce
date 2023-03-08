@@ -8,7 +8,7 @@ import {useState} from "react";
 import {postRegister} from "../../helper/backend_helper";
 import {useDispatch} from "react-redux";
 import {addUser} from "../../store/slices/user/userSlice";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 
 export const Register = () => {
@@ -45,6 +45,11 @@ export const Register = () => {
                         <InputForm handleChange={(e) => setPassword(e.target.value)} label={"Mot de passe"}
                                    type={"password"}/>
                     </Form>
+                    <Row>
+                        <Col length={12}>
+                            <Link style={{textAlign: "center"}} to={"/login"}>Vous avez déja un compte ? </Link>
+                        </Col>
+                    </Row>
                 </div>
             </Col>
         </Row>
