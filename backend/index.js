@@ -6,10 +6,11 @@ import cors from "cors"
 import {auth} from "./middleware/auth.js";
 import userRouter from "./routes/userRouter.js";
 import * as dotenv from 'dotenv'
+
 dotenv.config()
 
 const app = express()
-const PORT = 5300
+const PORT = process.env.PORT || 5200
 
 app.use(cors())
 app.use(express.static('public'));
@@ -20,12 +21,11 @@ mongoose.set("strictQuery", false)
 mongoose.connect(process.env.MONGO_DB_URI)
     .then(init)
     .catch(err => {
-        console.log(err)
-        console.log("Avez vous bien renseigner les variables d'environnements ? ")
-
+        console.log(err.message)
     })
 
 async function init() {
+    console.log('Connexion établie')
     app.use('/auth', authRouter)
     app.use('/admin',[auth.verifyToken, auth.isAdmin], adminRouter)
     app.use('/user',[auth.verifyToken, ], userRouter)
