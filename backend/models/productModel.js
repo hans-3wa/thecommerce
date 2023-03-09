@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
-import slug from 'mongoose-slug-generator';
-
-mongoose.plugin(slug)
+import {slugify} from "../utils/utils.js";
 
 const productModel = new mongoose.Schema({
         name: {
@@ -28,7 +26,6 @@ const productModel = new mongoose.Schema({
         },
         slug: {
             type: String,
-            slug: 'name',
             unique: true,
             index: true
         },
@@ -42,5 +39,8 @@ const productModel = new mongoose.Schema({
         versionKey: false
     }
 )
-
+productModel.pre('save', async function (next) {
+    this.slug = slugify(this.name)
+    next()
+})
 export default mongoose.model('Product', productModel)

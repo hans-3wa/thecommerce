@@ -18,7 +18,10 @@ app.use(express.static('public'));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 mongoose.set("strictQuery", false)
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then(init)
     .catch(err => {
         console.log(err.message)
@@ -27,8 +30,8 @@ mongoose.connect(process.env.MONGODB_URI)
 async function init() {
     console.log('Connexion établie')
     app.use('/auth', authRouter)
-    app.use('/admin',[auth.verifyToken, auth.isAdmin], adminRouter)
-    app.use('/user',[auth.verifyToken, ], userRouter)
+    app.use('/admin', [auth.verifyToken, auth.isAdmin], adminRouter)
+    app.use('/user', [auth.verifyToken,], userRouter)
 }
 
 app.listen(PORT, () => {

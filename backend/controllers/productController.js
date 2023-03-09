@@ -29,7 +29,7 @@ export const addProduct = (req, res) => {
 
             const images = await copyFiles(files.image ?? [], 'img/products')
 
-            ProductModel.create({
+            const product = new ProductModel({
                 name: fields.name,
                 description: fields.description,
                 quantity: fields.quantity,
@@ -37,6 +37,8 @@ export const addProduct = (req, res) => {
                 status: fields.status,
                 images
             })
+
+            product.save()
                 .then((product) => res.status(201).json({message: "Creation products successful", product}))
                 .catch((err) => res.status(400).json({error: err.message}))
         });
@@ -122,13 +124,17 @@ export const deleteAllProducts = (req, res) => {
     ProductModel.deleteMany()
         .then((data) => {
             fs.readdir('public/img/products', (err, files) => {
-                if (err) throw err;
+                if (err) return res.status(500).json({error: "An error occured"});
+
                 for (const file of files) {
-                    fs.unlink(`public/img/products/${file}`, err => {
-                        if (err) {
-                            return res.status(500).json({message: 'Error during deletion'})
-                        }
-                    });
+                    if (file !== '.gitignore') {
+                        fs.unlink(`public/img/products/${file}`, err => {
+                            if (err) {
+                                return res.status(500).json({message: 'Error during deletion'})
+                            }
+                        });
+                    }
+
                 }
             });
             res.status(204).send()

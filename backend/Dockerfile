@@ -1,11 +1,14 @@
 FROM node:18.5
-
+# Create app directory
+RUN mkdir -p /app/backend
 WORKDIR /app/backend
 
-COPY package*.json ./
-
+# Install app dependencies
+COPY package.json /app/backend
 RUN npm install
 
-COPY . .
+# Bundle app source
+COPY . /app/backend
 
-CMD ["npm", "start"]
+EXPOSE 5300
+CMD [ "npm", "start" ]
