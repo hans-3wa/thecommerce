@@ -1,5 +1,14 @@
-# Utiliser l'application 
+# Utiliser l'application
 
-## Backend
+## Docker
 
-Copier *.env.sample* et créer un fichier *.env* et renseigner les variables d'environnements par des valeurs corrects
+### Start
+```bash
+docker-compose up
+```
+
+### Stop
+```bash
+docker-compose stop
+```
+

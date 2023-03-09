@@ -18,7 +18,7 @@ app.use(express.static('public'));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 mongoose.set("strictQuery", false)
-mongoose.connect(process.env.MONGO_DB_URI)
+mongoose.connect(process.env.MONGODB_URI)
     .then(init)
     .catch(err => {
         console.log(err.message)

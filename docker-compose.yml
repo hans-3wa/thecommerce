@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  backend:
+    build: backend/
+    ports:
+      - "5300:5300"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/thecommerce
+      - PORT=5300
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    ports:
+      - "28017:27017"
+  client:
+    build: client/
+    ports:
+      - "3000:3000"
