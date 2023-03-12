@@ -1,44 +1,88 @@
+@import "src/assets/styles/mixins";
+
 .col {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin: auto;
+  margin: 8px auto;
+  box-sizing: border-box;
+  padding: 0 8px;
 }
 
-.col-1{
+.col-1 {
   max-width: 8.33%;
 }
-.col-2{
+
+.col-2 {
   max-width: 16.66%;
 }
-.col-3{
+
+.col-3 {
+  @include sm {
+    max-width: 100%;
+  }
+
+  @include md {
+    max-width: 50%;
+  }
+
+  @include lg {
+    max-width: 50%;
+  }
+
+  @include xl {
     max-width: 25%;
+  }
 }
-.col-4{
-  max-width: 33.33%;
+
+.col-4 {
+  @include sm {
+    max-width: 100%;
+  }
+
+  @include md {
+    max-width: 50%;
+  }
+
+  @include lg {
+    max-width: 50%;
+  }
+
+  @include xl {
+    max-width: 33.33%;
+  }
+
 }
-.col-5{
+
+.col-5 {
   max-width: 41.66%;
 }
-.col-6{
+
+.col-6 {
   max-width: 50%;
 }
-.col-7{
+
+.col-7 {
   max-width: 58.33%;
 }
-.col-8{
+
+.col-8 {
   max-width: 66.66%;
 }
-.col-9{
+
+.col-9 {
   max-width: 75%;
 }
-.col-10{
+
+.col-10 {
   max-width: 83.33%;
 }
-.col-11{
+
+.col-11 {
   max-width: 91.66%;
 }
-.col-12{
+
+.col-12 {
   max-width: 100%;
 }
 

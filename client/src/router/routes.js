@@ -5,9 +5,11 @@ import {Login} from "../pages/auth/login";
 import {Admin} from "../pages/admin/admin";
 import {AdminProduct} from "../pages/admin/adminProduct/adminProduct";
 import {Home} from "../pages/home/home";
+import {Product} from "../pages/product/product";
 
 const publicRoutes = [
     {path: "/", component: <Home/>},
+    {path: "/product/:slug", component: <Product/>},
     {path: "/register", component: <Register/>},
     {path: "/login", component: <Login/>},
     {path: "/logout", component: <Logout/>}

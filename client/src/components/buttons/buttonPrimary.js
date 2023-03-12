@@ -1,7 +1,7 @@
 import './styles.scss'
 
-export const ButtonPrimary = ({content, handleClick, type}) => {
+export const ButtonPrimary = ({children, handleClick, type}) => {
     return(
-        <button type={type} onClick={handleClick} className={"btn btn-primary"}>{content}</button>
+        <button type={type} onClick={handleClick} className={"btn btn-primary"}>{children}</button>
     )
 }

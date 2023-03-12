@@ -1,5 +1,6 @@
 import './styles.scss'
 import PropTypes from "prop-types";
+import {ButtonPrimary} from "../buttons/buttonPrimary";
 
 export const Form = (props) => {
 
@@ -8,7 +9,7 @@ export const Form = (props) => {
                 <form onSubmit={props.handleSubmit}>
                     {props.children}
                     <div className="form-group">
-                        { props.btnSubmit && ( <button type={'submit'}>{props.titleSubmit}</button>)}
+                        { props.btnSubmit && ( <ButtonPrimary type={'submit'}>{props.titleSubmit}</ButtonPrimary>)}
                     </div>
                 </form>
             </div>

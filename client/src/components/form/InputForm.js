@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import {useEffect} from "react";
 
 export const InputForm = (props) => {
     return (
@@ -8,7 +7,7 @@ export const InputForm = (props) => {
                 <label>{props.label}</label>
                 {props.type !== 'select' ? (
                     <input type={props.type} name={props.name ?? props.label.toLowerCase().replaceAll(' ', '_')}
-                           onChange={props.handleChange} value={props.value ?? null}/>
+                           onChange={props.handleChange} value={props.value ?? undefined}/>
                 ) : (
                     <>
                         <select onChange={props.handleChange} defaultValue={props.defaultValue.id}>

@@ -5,10 +5,11 @@ import {Title} from "../../components/title/Title";
 import './styles.scss';
 import {InputForm} from "../../components/form/InputForm";
 import {useState} from "react";
-import {postLogin, postRegister} from "../../helper/backend_helper";
-import {useDispatch, useSelector} from "react-redux";
+import {postLogin} from "../../helper/backend_helper";
+import {useDispatch} from "react-redux";
 import {addUser} from "../../store/slices/user/userSlice";
 import {useNavigate} from "react-router-dom";
+import {toastError} from "../../components/toast/toast";
 
 
 export const Login = (props) => {
@@ -29,7 +30,7 @@ export const Login = (props) => {
                 navigate("/dashboard")
             })
             .catch((err) => {
-                console.log(err)
+                toastError('Identifiants incorrect')
             })
     }
 
@@ -38,7 +39,7 @@ export const Login = (props) => {
             <Col length={12}>
                 <Title type={"h1"} content={"Login"}/>
             </Col>
-            <Col length={6}>
+            <Col length={10}>
                 <div className={"form-register"}>
                     <Form titleSubmit={"Inscription"} handleSubmit={handleSubmit} btnSubmit>
                         <InputForm handleChange={(e) => setEmail(e.target.value)} label={"Email"} type={"email"}/>

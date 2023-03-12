@@ -1,0 +1,15 @@
+@import "src/assets/styles/colors";
+
+footer {
+  width: 100%;
+  background: $background-2;
+  color: $font-2;
+  display: flex;
+  padding: 1em;
+  box-sizing: border-box;
+  .contact {
+    a {
+      color: $font-2;
+    }
+  }
+}

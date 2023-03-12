@@ -1,0 +1,54 @@
+@import "src/assets/styles/colors";
+.home {
+  .title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p{
+      text-align: center;
+    }
+  }
+  .sub-title{
+    h2{
+      color: $font-1;
+    }
+    width: 70%;
+    margin: 8px 0;
+  }
+  h1 {
+    text-align: center;
+  }
+  .cart{
+    box-sizing: border-box;
+    h3{
+      text-align: center;
+    }
+    p{
+      text-align: center;
+    }
+    .cart-img{
+      justify-content: center;
+      padding: 0 16px;
+      margin: 16px auto;
+      img{
+        max-height: 170px;
+        width: auto;
+        margin: auto;
+      }
+    }
+    .cart-item{
+      padding: 0 16px;
+      li{
+        margin-top: 4px;
+      }
+    }
+    .action{
+      display: flex;
+      justify-content: center;
+      button{
+        margin: 0;
+      }
+    }
+  }
+
+}

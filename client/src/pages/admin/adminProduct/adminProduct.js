@@ -14,14 +14,13 @@ export const AdminProduct = () => {
     const [product, setProduct] = useState({})
 
     useEffect(() => {
-        console.log(slug)
         getAdminProductSlug(slug)
             .then((product) => setProduct(product))
             .catch((err) => console.log(err))
-    }, [])
+    }, [slug])
 
     const handleChange = (e) => {
-        const {name, value} = e.target
+        const {name} = e.target
         console.log(name)
         setProduct({...product, [e.name]: e.value})
     }

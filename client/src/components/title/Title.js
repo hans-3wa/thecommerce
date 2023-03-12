@@ -15,6 +15,8 @@ export const Title = (props) => {
             return <h5>{props.content}</h5>
         case 'h6' :
             return <h6>{props.content}</h6>
+        default :
+            return <h2>{props.content}</h2>
     }
 }
 

@@ -35,10 +35,11 @@ export const Register = () => {
 
     return (
         <Row>
+
             <Col length={12}>
-                <Title type={"h1"} content={"Register"}/>
+                <Title type={"h1"} content={"Inscription"}/>
             </Col>
-            <Col length={6}>
+            <Col length={10}>
                 <div className={"form-register"}>
                     <Form titleSubmit={"Inscription"} handleSubmit={handleSubmit} btnSubmit>
                         <InputForm handleChange={(e) => setEmail(e.target.value)} label={"Email"} type={"email"}/>

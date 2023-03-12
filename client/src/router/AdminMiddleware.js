@@ -32,6 +32,7 @@ export const AdminMiddleware = (props) => {
         case false: {
             return <h1>Loading</h1>
         }
+        default: return <h1>Loading</h1>
     }
 
 };

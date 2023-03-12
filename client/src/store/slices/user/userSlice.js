@@ -7,14 +7,14 @@ export const fetchUser = createAsyncThunk(
         return await response.json()
     }
 )
-
+const initialState = {
+    email: "",
+    isAdmin: false,
+    isLogged: false
+}
 export const userSlice = createSlice({
     name: 'userSlice',
-    initialState: {
-        email: "",
-        isAdmin: false,
-        isLogged: false
-    },
+    initialState,
     reducers: {
         addUser: (state, action) => {
             return {
@@ -23,6 +23,11 @@ export const userSlice = createSlice({
                 isAdmin: action.payload.user.isAdmin,
                 isLogged: true
 
+            }
+        },
+        deleteUser: (state, action) => {
+            return{
+                ...initialState
             }
         }
     },
@@ -41,6 +46,6 @@ export const userSlice = createSlice({
     },
 })
 
-export const {addUser} = userSlice.actions
+export const {addUser, deleteUser} = userSlice.actions
 
 export default userSlice.reducer

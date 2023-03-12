@@ -6,6 +6,7 @@ import cors from "cors"
 import {auth} from "./middleware/auth.js";
 import userRouter from "./routes/userRouter.js";
 import * as dotenv from 'dotenv'
+import publicRouter from "./routes/publicRouter.js";
 
 dotenv.config()
 
@@ -29,6 +30,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 async function init() {
     console.log('Connexion établie')
+    app.use('/', publicRouter)
     app.use('/auth', authRouter)
     app.use('/admin', [auth.verifyToken, auth.isAdmin], adminRouter)
     app.use('/user', [auth.verifyToken,], userRouter)

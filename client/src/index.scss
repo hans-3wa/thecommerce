@@ -12,11 +12,18 @@ a{
   color: $font-1;
   font-weight: 600;
 }
-
-body {
+html, body{
+  height: 100%;
   margin: 0;
+}
+body {
   font-family: 'MedievalSharp', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: $background-1;
+}
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
